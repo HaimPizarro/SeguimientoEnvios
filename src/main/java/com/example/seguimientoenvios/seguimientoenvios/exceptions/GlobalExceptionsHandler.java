@@ -17,8 +17,8 @@ import java.util.stream.Collectors;
 @ControllerAdvice
 public class GlobalExceptionsHandler {
 
-    @ExceptionHandler(SeguimientoNotFount.class)
-    public ResponseEntity<Object> handlerSeguimientoNotFound(SeguimientoNotFount ex) {
+    @ExceptionHandler(SeguimientoNotFound.class)
+    public ResponseEntity<Object> handlerSeguimientoNotFound(SeguimientoNotFound ex) {
         Map<String, Object> body = new HashMap<>();
         body.put("timestamp", LocalDateTime.now());
         body.put("status", HttpStatus.NOT_FOUND.value());

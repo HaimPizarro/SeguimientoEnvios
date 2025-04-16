@@ -25,8 +25,8 @@ public class SeguimientoEnviosController {
     
     private final SeguimientoEnviosServices seguimientoEnviosServices;
 
-    public SeguimientoEnviosController(SeguimientoEnviosServices seguimientoEnvioServices) {
-        this.seguimientoEnviosServices = seguimientoEnvioServices;
+    public SeguimientoEnviosController(SeguimientoEnviosServices seguimientoEnviosServices) {
+        this.seguimientoEnviosServices = seguimientoEnviosServices;
     }
 
     @GetMapping
@@ -35,43 +35,38 @@ public class SeguimientoEnviosController {
     }
     
     @GetMapping("/{id}")
-    public SeguimientoEnvios getSeguimientoEnviosByID(@PathVariable Long id) {
-        // Llamamos al servicio: getViajeMascotaById(id)
-        return seguimientoEnviosServices.getSeguimientoEnviosByID(id);
-    }
-    
-    @GetMapping("/{id}")
-    public ViajeMascota getViajeMascota(@PathVariable Long id) {
-        // Llamamos al servicio: getViajeMascotaById(id)
-        return viajeMascotaServices.getViajeMascotaById(id);
+    public SeguimientoEnvios getSeguimientoEnviosById(@PathVariable Long id) {
+        return seguimientoEnviosServices.getSeguimientoEnviosById(id);
     }
 
     @PostMapping
-    public ResponseEntity<ResponseWrapper<ViajeMascota>> crearViaje(@Valid @RequestBody ViajeMascota viajeMascota) {
-        // Usamos una variable distinta
-        ViajeMascota nuevoViaje = viajeMascotaServices.crearViaje(viajeMascota);
+    public ResponseEntity<ResponseWrapper<SeguimientoEnvios>> crearEnvio(
+            @Valid @RequestBody SeguimientoEnvios seguimientoEnvios) {
+
+        SeguimientoEnvios nuevoEnvio = seguimientoEnviosServices.crearEnvio(seguimientoEnvios);
+
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body(new ResponseWrapper<>("Viaje creado con exito", 1, List.of(nuevoViaje)));
+                .body(new ResponseWrapper<>("Envío creado con éxito", 1, List.of(nuevoEnvio)));
     }
-
+    
     @PutMapping("/{id}")
-    public ResponseEntity<ResponseWrapper<ViajeMascota>> actualizarViaje(
+    public ResponseEntity<ResponseWrapper<SeguimientoEnvios>> actualizarEnvio(
             @PathVariable Long id,
-            @Valid @RequestBody ViajeMascota viajeMascota) {
-        // Igual, variable distinta
-        ViajeMascota viajeActualizado = viajeMascotaServices.actualizarViaje(id, viajeMascota);
+            @Valid @RequestBody SeguimientoEnvios seguimientoEnvios) {
+
+        SeguimientoEnvios seguimientoActualizado = seguimientoEnviosServices.actualizarEnvio(id, seguimientoEnvios);
+
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(new ResponseWrapper<>("Viaje actualizado con exito", 1, List.of(viajeActualizado)));
+                .body(new ResponseWrapper<>("Envío actualizado con éxito", 1, List.of(seguimientoActualizado)));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<ResponseWrapper<ViajeMascota>> eliminarViaje(@PathVariable Long id) {
-        ViajeMascota viajeEliminado = viajeMascotaServices.eliminarViaje(id);
+    public ResponseEntity<ResponseWrapper<SeguimientoEnvios>> eliminarEnvio(@PathVariable Long id) {
+        SeguimientoEnvios seguimientoEliminado = seguimientoEnviosServices.eliminarEnvio(id);
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(new ResponseWrapper<>("Viaje eliminado con exito", 1, List.of(viajeEliminado)));
+                .body(new ResponseWrapper<>("Envio eliminado con exito", 1, List.of(seguimientoEliminado)));
     }
-
 }

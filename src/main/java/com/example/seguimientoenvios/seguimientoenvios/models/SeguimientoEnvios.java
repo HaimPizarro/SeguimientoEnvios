@@ -17,49 +17,46 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 
+@Entity
+@Table(name = "seguimientoenvios") // Nombre real de la tabla en DB
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-@Table(name = "seguimientoenvios")//nombre de la tabla
 public class SeguimientoEnvios {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotNull(message="El campo id es obligatorio")
-    @Positive(message="El campo id debe ser positivo")
+    @NotNull(message="El id no puede ser nulo")
+    @Positive(message="El id debe ser positivo")
     private Long id;
 
-    //TODO: Agregar restriccion de fechas
-    @NotBlank(message="El campo id es obligatorio")
+    // Suponiendo que de momento lo dejaremos como String:
+    @NotBlank(message="La fecha de envío es obligatoria")
     private String fechaenvio;
 
-    //TODO:agregar restriccion de fechas
-    @NotBlank(message="El campo id es obligatorio")
+    @NotBlank(message="La fecha final es obligatoria")
     private String fechafinal;
 
-    @NotBlank(message="El estado es obligatiorio")
+    @NotBlank(message="El estado del envío es obligatorio")
     private String estadoenvio;
 
     @NotBlank(message="Las observaciones son obligatorias")
-    @Size(min=1, max=255, message=("Debe tener tener entre 1 y 255 caracteres") )
+    @Size(min=1, max=255, message="Debe tener entre 1 y 255 caracteres")
     private String observaciones;
-    
-    @NotBlank(message="El campo peso es obligatorio")
-    @Positive(message="El campo peso debe tener un valor sobre 0")
-    @Min(value=1, message="El peso debe tener por lo menos 1 caracter")
-    @Max(value = 40, message = "El peso debe tener un maximo de 40 caractres")
+
+    // INT: no usar @NotBlank en campos numéricos
+    @NotNull(message="El campo peso es obligatorio")
+    @Positive(message="El peso debe ser mayor a 0")
+    @Max(value = 40, message = "El peso no puede superar 40 (unidades)")
     private int peso;
 
-    @NotBlank(message="El campo altura es obligatorio")
-    @Positive(message="El campo altura debe tener un valor sobre 0")
-    @Min(value=1, message="La altura debe tener por lo menos 1 caracter")
-    @Max(value = 40, message = "La altura debe tener un maximo de 40 caractres")
+    @NotNull(message="El campo altura es obligatorio")
+    @Positive(message="La altura debe ser mayor a 0")
+    @Max(value = 40, message = "La altura no puede superar 40 (unidades)")
     private int altura;
 
-    @NotBlank(message="El campo longitud es obligatorio")
-    @Positive(message="El campo peso longitud tener un valor sobre 0")
-    @Min(value=1, message="La longitud debe tener por lo menos 1 caracter")
-    @Max(value = 40, message = "La longitud debe tener un maximo de 40 caractres")
+    @NotNull(message="El campo longitud es obligatorio")
+    @Positive(message="La longitud debe ser mayor a 0")
+    @Max(value = 40, message = "La longitud no puede superar 40 (unidades)")
     private int longitud;
 }

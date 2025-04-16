@@ -1,7 +1,10 @@
 package com.example.seguimientoenvios.seguimientoenvios.repository;
 
-public interface SeguimientoRepository extends JpaRepository<ViajeMascota, Long> {
+import org.springframework.data.jpa.repository.JpaRepository;
+import com.example.seguimientoenvios.seguimientoenvios.models.SeguimientoEnvios;
+
+public interface SeguimientoRepository extends JpaRepository<SeguimientoEnvios, Long> {
 }
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import com.example.viaje.mascota.viajemascota.models.ViajeMascota;
+
+
