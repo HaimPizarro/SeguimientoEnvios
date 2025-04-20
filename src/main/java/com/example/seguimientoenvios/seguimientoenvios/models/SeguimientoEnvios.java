@@ -1,10 +1,13 @@
 package com.example.seguimientoenvios.seguimientoenvios.models;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -26,16 +29,14 @@ public class SeguimientoEnvios {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotNull(message="El id no puede ser nulo")
     @Positive(message="El id debe ser positivo")
     private Long id;
 
-    // Suponiendo que de momento lo dejaremos como String:
-    @NotBlank(message="La fecha de envío es obligatoria")
-    private String fechaenvio;
-
-    @NotBlank(message="La fecha final es obligatoria")
-    private String fechafinal;
+    @NotNull(message="La fecha de envío es obligatoria")
+    private LocalDateTime fechaenvio;
+  
+    @NotNull(message="La fecha final es obligatoria")
+    private LocalDateTime fechafinal;
 
     @NotBlank(message="El estado del envío es obligatorio")
     private String estadoenvio;
@@ -44,7 +45,6 @@ public class SeguimientoEnvios {
     @Size(min=1, max=255, message="Debe tener entre 1 y 255 caracteres")
     private String observaciones;
 
-    // INT: no usar @NotBlank en campos numéricos
     @NotNull(message="El campo peso es obligatorio")
     @Positive(message="El peso debe ser mayor a 0")
     @Max(value = 40, message = "El peso no puede superar 40 (unidades)")
