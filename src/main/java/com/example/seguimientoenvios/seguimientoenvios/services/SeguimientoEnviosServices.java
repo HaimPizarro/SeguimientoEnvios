@@ -37,7 +37,6 @@ public class SeguimientoEnviosServices {
         SeguimientoEnvios seguimientoActual = seguimientoRepository.findById(id)
                 .orElseThrow(() -> new SeguimientoNotFound(id));
 
-        // Ajustar getters y setters según tus campos EXACTOS:
         seguimientoActual.setFechaenvio(seguimientoEnvios.getFechaenvio());
         seguimientoActual.setFechafinal(seguimientoEnvios.getFechafinal());
         seguimientoActual.setEstadoenvio(seguimientoEnvios.getEstadoenvio());

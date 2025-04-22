@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 
 @Entity
-@Table(name = "seguimientoenvios") // Nombre real de la tabla en DB
+@Table(name = "seguimientoenvios")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
